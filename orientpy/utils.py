@@ -418,7 +418,7 @@ def pathvels(lat1, lon1, lat2, lon2,
             # find right index
             q = np.where(map10[:, 1] == nv(map10[:, 1], (D[k, 0])))[0]
             qq = np.where(map10[q, 0] == nv(map10[q, 0],  (D[k, 1])))[0]
-            idx = q[qq]
+            idx = q[qq].item() # Fix scalar indexing in pathvels
 
             # update path
             U1[k, 0] = map10[idx, 2]
