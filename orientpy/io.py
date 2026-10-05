@@ -138,13 +138,21 @@ def download_data(client=None, sta=None, start=UTCDateTime(),
             print("*              - Stream is missing components")
 
     # Check the correct 3 components exist
-    if st is None:
+    if st is None or len(st) == 0: # Handle empty waveform streams
         print("* Error retrieving waveforms")
         print("**************************************************")
         return True, None
 
     # Three components successfully retrieved
     else:
+
+        # Normalize near-integer sampling rates before merge
+        for tr in st:
+            sr = tr.stats.sampling_rate
+            sr_round = round(sr)
+
+            if np.isclose(sr, sr_round, rtol=0, atol=1e-3):
+                tr.stats.sampling_rate = float(sr_round)
 
         st.merge()
 
@@ -196,7 +204,7 @@ def download_data(client=None, sta=None, start=UTCDateTime(),
             print("* Lengths are incompatible: ")
             [print("*     "+str(tr.stats.npts)) for tr in st]
             print("*     Trimming to shortest segment")
-            L = int(np.unique(np.min(np.array([len(tr.data) for tr in st]))))
+            L = min(len(tr.data) for tr in st) # Fix shortest trace length calculation
             st[0].data = st[0].data[0:L]
             st[1].data = st[1].data[0:L]
             st[2].data = st[2].data[0:L]
