@@ -46,7 +46,7 @@ where ``OrientPy`` can be installed along with some of its dependencies.
 
 .. sourcecode:: bash
 
-   conda create -n orient -c conda-forge python=3.12 obspy 
+   conda create -n orient -c conda-forge python=3.12 obspy geographiclib
 
 Activate the newly created environment:
 
@@ -59,7 +59,6 @@ Install remaining dependencies using ``pip`` inside the ``orient`` environment:
 .. sourcecode:: bash
 
    pip install git+https://github.com/schaefferaj/stdb
-   pip install geographiclib
 
 
 Installing development branch from GitHub
