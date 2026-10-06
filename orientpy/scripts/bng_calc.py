@@ -93,7 +93,7 @@ def get_bng_calc_arguments(argv=None):
         action="store",
         type=str,
         dest="server_cat",
-        default="IRIS",
+        default="USGS",
         help="Catalogue server setting: Key string for recognized server " +
              "that provide `available_event_catalogs` service (one of '" +
              "AUSPASS', 'BGR', 'EARTHSCOPE', 'EIDA', 'EMSC', 'ETH', " +
@@ -101,7 +101,7 @@ def get_bng_calc_arguments(argv=None):
              "'IRIS', 'IRISPH5', 'ISC', 'KNMI', 'KOERI', 'LMU', 'NCEDC', " +
              "'NIEP', 'NOA', 'NRCAN', 'ODC', 'ORFEUS', 'RASPISHAKE', " +
              "'RESIF', 'RESIFPH5', 'SCEDC', 'TEXNET', 'UIB-NORSAR', " +
-             "'USGS', 'USP'). [Default 'IRIS']")
+             "'USGS', 'USP'). [Default 'USGS']")
     Svparm.add_argument(
         "--server-wf",
         action="store",
